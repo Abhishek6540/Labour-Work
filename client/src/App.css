@@ -252,7 +252,7 @@ nav {
 }
 .story1 {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 00.5)),
-    url(images/my-status.png);
+    url(../public/images/my-status.png);
   background-position: center;
 }
 
@@ -267,22 +267,22 @@ nav {
 
 .story2 {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 00.5)),
-    url(images/status-2.png);
+    url(../public/images/status-2.png);
   background-position: center;
 }
 .story3 {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 00.5)),
-    url(images/status-3.png);
+    url(../public/images/status-3.png);
   background-position: center;
 }
 .story4 {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 00.5)),
-    url(images/status-4.png);
+    url(../public/images/status-4.png);
   background-position: center;
 }
 .story5 {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 00.5)),
-    url(images/status-5.png);
+    url(../public/images/status-5.png);
   background-position: center;
 }
 
