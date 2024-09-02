@@ -1,0 +1,28 @@
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
+const { createUser, login, getUser, updateUser, deleteUser, logout } = require('../controller/userController')
+
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+    destination:(req,file, cb)=>{
+        cb(null, "uploads/")
+    },
+    filename:(req,file, cb)=>{
+        cb(null, Data.now()+"-"+file.originalname)
+    }
+});
+
+const upload = multer({storage})
+
+//Rotes
+router.post("/",upload.single("image"), createUser);
+router.get("/:id", getUser)
+router.put("/:id", updateUser)
+router.delete("/:id",deleteUser)
+
+router.post("/login", login)
+router.post("/logout", logout)
+
+
+module.exports = router;
