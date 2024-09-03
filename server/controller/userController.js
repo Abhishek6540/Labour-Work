@@ -109,13 +109,13 @@ exports.logout = async (req, res) => {
     const { emailOrPhone } = req.body;
 
     try {
-        
+
         const query = isNaN(emailOrPhone)
             ? { email: emailOrPhone }
             : { phone: Number(emailOrPhone) };
 
-        const user = await User.findOne(query );
-        
+        const user = await User.findOne(query);
+
         if (!user) {
             return res.status(404).json({ success: false, message: 'User not found' });
         }
@@ -128,5 +128,57 @@ exports.logout = async (req, res) => {
         res.status(201).json({ success: true, message: 'Logged out successfully' });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
-    }  
+    }
+}
+
+exports.verifyotp = async (req, res) => {
+    const { emailOrPhone } = req.body;
+    try {
+        const query = isNaN(emailOrPhone)
+            ? { email: emailOrPhone }
+            : { phone: Number(emailOrPhone) };
+
+        const user = await User.findOne(query);
+        if (!user) {
+            return res.status(400).json({ success: false, message: "User not found" });
+        }
+        const otp = Math.floor(Math.random() * 9000 + 1000);
+        await User.updateOne(
+            { _id: user._id },
+            { $set: { otp: otp, updatedBy: new Date() } }
+        );
+        setTimeout(async () => {
+            await userModel.updateOne(
+                { _id: user._id },
+                { $set: { otp: '', updatedBy: null } }
+            );
+            console.log("OTP cleared for user:", user.email);
+        }, 3 * 60 * 1000);
+
+        return res.status(201).json({ success: true, otp });
+
+    } catch (error) {
+        console.error("Error verifying OTP:", error.message);
+        return res.status(500).json({ success: false, message: error.message });
+    }
+}
+
+exports.resetPassword = async (req,res) => {
+    const { otp, newPassword } = req.body;
+
+    try {
+         const user = await User.findOne({ otp });
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        const lastestPassword = await bcrypt.hash(newPassword, 10);
+
+        const updatedUser = await User.updateOne(
+            { _id: user._id },
+            { $set: { password: lastestPassword } }
+        );
+        res.status(200).json({ success: true, message: 'Password reset successfully'});
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
 }

@@ -29,7 +29,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
         minlength: [8, "Password must be at least 8 characters long"],
-        // select: false // this hides the password field from the returned document
+    },
+    access_token:{
+        type: String,
+    },
+    otp:{
+        type: Number,
     },
     image:{
         type: String,

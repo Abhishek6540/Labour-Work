@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const { createUser, login, getUser, updateUser, deleteUser, logout } = require('../controller/userController')
+const { createUser, login, getUser, updateUser, deleteUser, logout, verifyotp, resetPassword } = require('../controller/userController')
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
@@ -23,6 +23,8 @@ router.delete("/:id",deleteUser)
 
 router.post("/login", login)
 router.post("/logout", logout)
+router.post("/verifyotp", verifyotp)
+router.post("/resetpassword", resetPassword)
 
 
 module.exports = router;
