@@ -2,6 +2,7 @@ const express = require('express');
 const colors = require('colors');
 const connectDB = require('./config/mongodb');
 const userRoutes = require('./routes/userRoutes');
+const jobPostRoutes = require('./routes/jobpostRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -13,10 +14,13 @@ connectDB();
 // Middleware to parse JSON
 app.use(express.json());
 
-// Main routes
+// Main routes start
 app.use("/user", userRoutes);
+app.use("/jobpost", jobPostRoutes);
 
-// Default route
+// Main routes end
+
+// Default route 
 app.get('/', (req, res) => {
     res.send('Hello, welcome to the Node.js and MongoDB API!');
 });
