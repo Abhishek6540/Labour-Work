@@ -3,6 +3,8 @@ const colors = require('colors');
 const connectDB = require('./config/mongodb');
 const userRoutes = require('./routes/userRoutes');
 const jobPostRoutes = require('./routes/jobpostRoutes');
+const followRoutes = require('./routes/followRoutes');
+const roleRoutes = require('./routes/roleRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -17,6 +19,8 @@ app.use(express.json());
 // Main routes start
 app.use("/user", userRoutes);
 app.use("/jobpost", jobPostRoutes);
+app.use("/follow", followRoutes);
+app.use("/roles", roleRoutes);
 
 // Main routes end
 

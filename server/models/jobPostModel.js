@@ -19,9 +19,14 @@ const jobPostSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    user_id:{
+        type: "String",
+        ref: 'User'
+    },
     tags: [String],
 }, {
-    timestamps: true  // This adds `createdAt` and `updatedAt` fields automatically
+    timestamps: true,
+    versionKey: false
 });
 
 module.exports = mongoose.model("JobPost", jobPostSchema);
