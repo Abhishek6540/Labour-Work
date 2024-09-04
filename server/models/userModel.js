@@ -30,19 +30,22 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Password is required"],
         minlength: [8, "Password must be at least 8 characters long"],
     },
-    access_token:{
+    access_token: {
         type: String,
     },
-    otp:{
+    otp: {
         type: Number,
     },
-    image:{
+    image: {
         type: String,
     },
-    createdAt:{
-        type: Date,
-        default: Date.now
-    }
-})
+    roles: {
+        type: String,
+        ref: 'Role'
+    },
+}, {
+    timestamps: true,  // Enable automatic timestamps (createdAt, updatedAt)
+    versionKey: false  // Disable the __v field
+});
 
 module.exports = mongoose.model("User", UserSchema);

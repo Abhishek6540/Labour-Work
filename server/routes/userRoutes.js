@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const multer = require('multer');
-const upload = require("../multer/ImgVideoUpload")
+const upload = require("../middleware/uploadMiddleware")
 const { createUser, login, getUser, updateUser, deleteUser, logout, verifyotp, resetPassword } = require('../controller/userController')
 
 // Multer configuration for file uploads

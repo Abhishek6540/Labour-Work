@@ -1,25 +1,34 @@
 const User = require('../models/userModel');
+const Role = require('../models/roleModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 exports.createUser = async (req, res) => {
     try {
-        const { name, email, phone, password } = req.body;
+        const { name, email, phone, password, roles } = req.body;
         const image = req.file ? req.file.path : null;
-        let hashedPassword = await bcrypt.hash(password, 10)
+        let hashedPassword = await bcrypt.hash(password, 10);
+
+        const roleDocs = await Role.find({ name: { $in: roles } });
+        if (roleDocs.name !== roles.name) {
+            return res.status(400).json({ message: 'One or more roles are invalid' });
+        };
+
         let user = await User.findOne({ $or: [{ email: email }, { phone: phone }] });
         if (user) {
             return res.status(400).json({ message: 'User already exists' });
         }
+        
         user = new User({
             name,
             email,
             phone,
             password: hashedPassword,
-            image
+            image,
+            roles: roleDocs[0]?._id,
         });
 
         await user.save();
-        return res.status(201).json({ message: 'User registered successfully' });
+        return res.status(201).json({ message: 'User registered successfully',user });
 
     } catch (error) {
         console.error(error)
