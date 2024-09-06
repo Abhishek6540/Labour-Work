@@ -8,7 +8,7 @@ const Homepage = () => {
         <>
             <NavBar />
             {/* Container */}
-            <div className="container flex justify-between mt-4">
+            <div className="homepage-container flex justify-between mt-4">
                 {/* Left Sidebar */}
                 <div className="left-sidebar">
                     <div className="imp-links">

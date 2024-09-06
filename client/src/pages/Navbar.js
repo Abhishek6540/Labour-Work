@@ -65,7 +65,7 @@ const NavBar = () => {
                                 <img src="images/feedback.png" alt="" />
                                 <div>
                                     <p>Give feedback</p>
-                                    <a href="mailto:mailto:rohitjha242@gmail.com">help us to improve this website</a>
+                                    <a href="mailto:mailto:abhishke9872615721@gmail.com">help us to improve this website</a>
                                 </div>
                             </div>
                             <hr />

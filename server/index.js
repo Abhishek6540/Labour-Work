@@ -8,7 +8,7 @@ const roleRoutes = require('./routes/roleRoutes');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT;
 
 // Connect to MongoDB server
 connectDB();
