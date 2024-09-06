@@ -3,17 +3,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Homepage'));
-const SignIn = lazy(() => import('./pages/SignIn'));
-const SignUp = lazy(() => import('./pages/SignUp'));
+const SignInSignUp = lazy(() => import('./pages/SignInSignUp'));
+const DashboardRoutes = lazy(() => import('./dashboard/Dashboard'));
 
 const App = () => {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<div className="loader-div">
+      <span class="loader"></span>
+    </div>}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignInSignUp />} />
+          <Route path="/dashboard/*" element={<DashboardRoutes />} />
+
         </Routes>
       </Router>
     </Suspense>
