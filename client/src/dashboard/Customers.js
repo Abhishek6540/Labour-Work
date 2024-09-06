@@ -35,13 +35,6 @@ const CustomerList = () => {
     setCurrentPage(event.selected);
   };
 
-  // Function to toggle sidebar visibility
-
-  // Function to toggle schedule dropdown
-  // const toggleDropdown = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
   return (
     <>
       {/* Sidebar */}
@@ -51,7 +44,7 @@ const CustomerList = () => {
 
         {/* Customer List */}
         <div className="p-8">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-4 mt-14">
             <h1 className="text-2xl font-bold">Customers List</h1>
             <button className="bg-[#F13657] text-white px-4 py-2 rounded-lg">+ Add New Customer</button>
           </div>
@@ -105,7 +98,7 @@ const CustomerList = () => {
               pageCount={pageCount}
               onPageChange={handlePageClick}
               containerClassName={'flex justify-center'}
-              pageClassName={'mx-1 px-3 py-1 bg-gray-200 rounded-lg'}
+              pageClassName={'mx-1 px-3 py-1 rounded-lg'}
               previousLinkClassName={'px-3 py-1 bg-[#F13657] text-white rounded-lg'}
               nextLinkClassName={'px-3 py-1 bg-[#F13657] text-white rounded-lg'}
               activeClassName={'bg-[#F13657] text-white'}
