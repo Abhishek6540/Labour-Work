@@ -5,7 +5,9 @@ const Sidebar = lazy(() => import('./Sidebar'));
 const Navbar = lazy(() => import('./Navbar'));
 const Footer = lazy(() => import('./Footer'));
 const Analysis = lazy(() => import('./Analysis'));
-const Customers = lazy(() => import('./Customers'));
+const Customers = lazy(() => import('./CustomersList'));
+const AddCustomer = lazy(() => import('./AddCustomer'));
+const PageNotFound = lazy(() => import('./PageNotFound'));
 const Boards = lazy(() => import('./Boards'));
 
 const DashboardRoutes = () => {
@@ -21,8 +23,10 @@ const DashboardRoutes = () => {
             <Routes>
               <Route path="/" element={<Analysis />} />
               <Route path="/customers" element={<Customers />} />
+              <Route path="/add-customer" element={<AddCustomer />} />
+
               <Route path="/boards" element={<Boards />} />
-              <Route path="*" element={<p>Page not found</p>} />
+              <Route path="*" element={<PageNotFound/>} />
 
             </Routes>
             <Footer />

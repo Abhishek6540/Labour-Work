@@ -5,7 +5,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, ArcEle
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, ArcElement, Tooltip, Legend);
 
-const Dashboard = () => {
+const Analysis = () => {
     // Data for Bar Chart (Session Overview)
     const barData = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -163,4 +163,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Analysis;
